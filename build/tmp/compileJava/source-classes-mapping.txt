@@ -1,0 +1,96 @@
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Builders/CodingItemBuilder.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Builders.CodingItemBuilder
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Location.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Location
+uy/com/geocom/automation/geosaludServicios/resources/encounter/EncounterGSSManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.EncounterGSSManager
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/TypeItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.TypeItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/EncounterFacade.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.EncounterFacade
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Builders/EncounterBuilder.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Builders.EncounterBuilder
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Period.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Period
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Interfaces/EncounterManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.EncounterManager
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlatRunner.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlatRunner
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Interfaces/CodingItemManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.CodingItemManager
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/JsonMemberClass.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.JsonMemberClass
+uy/com/geocom/automation/geosaludServicios/resources/encounter/EncounterRunner.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.EncounterRunner
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Priority.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Priority
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/TelecomItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.TelecomItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ManagingOrganization.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ManagingOrganization
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Builders/IdentifierItemBuilder.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Builders.IdentifierItemBuilder
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/LocationItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.LocationItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ServiceProvider.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ServiceProvider
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/PhysicalType.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.PhysicalType
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/EncounterParameters.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.EncounterParameters
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ServiceType.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ServiceType
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ReasonCodeItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ReasonCodeItem
+uy/com/geocom/automation/geosaludServicios/resources/flat/Code.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.Code
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Builders/JsonMemberClassBuilder.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Builders.JsonMemberClassBuilder
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Subject.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Subject
+uy/com/geocom/automation/geosaludServicios/resources/flat/Subject.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.Subject
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlatSteps.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlatSteps
+uy/com/geocom/automation/geosaludServicios/resources/flat/CodingItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.CodingItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ParticipantItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ParticipantItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/IdentifierItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.IdentifierItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/EncounterSteps.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.EncounterSteps
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlagManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlagManager
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Individual.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Individual
+uy/com/geocom/automation/geosaludServicios/resources/flat/Encounter.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.Encounter
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Interfaces/IdentifierItemManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.IdentifierItemManager
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/ContainedItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.ContainedItem
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Address.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Address
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/CodingItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.CodingItem
+uy/com/geocom/automation/geosaludServicios/resources/flat/Period.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.Period
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlagFacade.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlagFacade
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/PartOf.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.PartOf
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Origin.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Origin
+uy/com/geocom/automation/geosaludServicios/resources/flat/CategoryItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.CategoryItem
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlagServiceManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlagServiceManager
+uy/com/geocom/automation/geosaludServicios/resources/encounter/Interfaces/JsonMemberClassManager.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.JsonMemberClassManager
+uy/com/geocom/automation/geosaludServicios/resources/flat/IdentifierItem.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.IdentifierItem
+uy/com/geocom/automation/geosaludServicios/resources/flat/FlagParameters.java
+ uy.com.geocom.automation.geosaludServicios.resources.flat.FlagParameters
+uy/com/geocom/automation/geosaludServicios/resources/encounter/ParametersClasses/Hospitalization.java
+ uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.Hospitalization

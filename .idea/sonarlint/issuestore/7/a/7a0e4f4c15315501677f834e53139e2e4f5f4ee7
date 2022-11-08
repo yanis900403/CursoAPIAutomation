@@ -1,0 +1,25 @@
+
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñó­
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(èØÃÏùÿÿÿÿ
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(åìõ†ıÿÿÿÿ
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ò”˜ê
+o
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(Öİïò
+t
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÄËÒûÿÿÿÿ
+t
+java:S2293."YReplace the type specification in this constructor call with the diamond operator ("<>").(Ÿ­˜¹øÿÿÿÿ
+o
+java:S22933"YReplace the type specification in this constructor call with the diamond operator ("<>").(õÓŠ‚
+c
+java:S1192!"HDefine a constant instead of duplicating this literal "display" 3 times.(¢âˆØûÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÙØ’¹ûÿÿÿÿ
+l	java:S116	"WRename this field "ResourceType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÅƒÌ
+£
+java:S1186?"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ìäÎ–ıÿÿÿÿ8™¾‘½0
+V	java:S125"<This block of commented-out lines of code should be removed.(Óè—«üÿÿÿÿ
+Q	java:S125:"<This block of commented-out lines of code should be removed.(ë¿ïİ
