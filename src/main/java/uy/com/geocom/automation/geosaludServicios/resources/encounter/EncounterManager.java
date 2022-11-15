@@ -1,4 +1,4 @@
-package uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces;
+package uy.com.geocom.automation.geosaludServicios.resources.encounter;
 //Se crea esta clase interfaz para guiar a la persona que vaya a consumir el EncounterBuilder.
 // De esta forma se guía a la persona para crear el objeto Encounter con un orden específico
 

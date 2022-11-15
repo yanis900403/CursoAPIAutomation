@@ -7,14 +7,15 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.stereotype.Component;
 import uy.com.geocom.automation.geosaludServicios.resources.encounter.Builders.EncounterBuilder;
-import uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.EncounterManager;
 import uy.com.geocom.automation.geosaludServicios.resources.encounter.ParametersClasses.*;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
+@Component
 public class EncounterGSSManager implements EncounterManager {
 
     private RequestSpecification request;
@@ -120,7 +121,7 @@ public class EncounterGSSManager implements EncounterManager {
     @Override
     public void iSendToTheEndpointFhirTest() {
         request = given()
-                .log().all() //loguear la respuesta
+               // .log().all() //loguear la respuesta
                 .baseUri("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir");
     }
 

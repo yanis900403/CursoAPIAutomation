@@ -1,11 +1,14 @@
 package uy.com.geocom.automation.geosaludServicios.resources.encounter;
 
-import uy.com.geocom.automation.geosaludServicios.resources.encounter.Interfaces.EncounterManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EncounterFacade {
+    @Autowired
+ EncounterManager encounterManager;
 
-private EncounterManager encounterManager;
-    public void iSendToTheEndpointFhirTest() {
+   public void iSendToTheEndpointFhirTest() {
         encounterManager.iSendToTheEndpointFhirTest();
     }
 

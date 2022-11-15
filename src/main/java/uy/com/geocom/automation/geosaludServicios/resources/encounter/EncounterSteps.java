@@ -12,30 +12,35 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class EncounterSteps {
-    private RequestSpecification request;
+   private RequestSpecification request;
     private Response response;
 
-    private ValidatableResponse json;
+     private ValidatableResponse json;
 
-
+     @Autowired
     private EncounterFacade encounterFacade;
 
-    @Given("I send a GET request to the endpoint")
+   /* @Given("I send a GET request to the endpoint")
     public void iSendAGETRequestToTheEndpoint() {
 
         request = given()
                 .baseUri("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir")
                 .contentType(ContentType.JSON);
-    }
+    }*/
 
     @And("I send a GET Encounter request")
     public void iSendAGETEncounterRequest() {
-    response= request.when().get("Encounter/1-614355");
+
+        response= request
+            .when()
+            .get("Encounter/1-614355");
     }
 
     @Then("I get a {int} status code")
@@ -630,7 +635,7 @@ public void iSendEndPointToCreateNewEncounter(){
     @Then("I can validate I receive a valid status code {int}")
     public void iCanValidateIReceiveAValidStatusCode(int statusCode) {
 
-        Assert.assertEquals(response.getStatusCode(),500);
+        Assert.assertEquals(response.getStatusCode(),statusCode);
 
     }
     @And("I verify that message is {string}")
@@ -958,14 +963,15 @@ public void iSendEndPointToCreateNewEncounter(){
         System.out.println("The diagnostics is: "+responseBody);
     }
 
+    /*
     @Given("I send to the endpoint Fhir Test")
     public void iSendToTheEndpointFhirTest() {
-        request = given()
+       /* request = given()
                 .log().all() //loguear la respuesta
                 .baseUri("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir");
+        encounterFacade.iSendToTheEndpointFhirTest();
 
     }
-
     @Then("I send to the endpoint to create a new Encounter Test")
     public void iSendToTheEndpointToCreateANewEncounterTest() {
         encounterFacade.iSendToTheEndpointToCreateANewEncounterTest();
@@ -984,5 +990,377 @@ public void iSendEndPointToCreateNewEncounter(){
     @And("I verify that message is {string} and the OS isn't created without act of care")
     public void iVerifyThatMessageIsAndTheOSIsnTCreatedWithoutActOfCare(String messageError) {
         encounterFacade.iVerifyThatMessageIsAndTheOSIsnTCreatedWithoutActOfCare(messageError);
+    }
+*/
+    @Then("I send to the endpoint to consult GET by Encounter with incorrect format")
+    public void iSendToTheEndpointToConsultGETByEncounterWithIncorrectFormat() {
+        response= request
+        .when()
+        .get("Encouner/1-614355");
+    }
+
+    @And("I verify that error message is {string}")
+    public void iVerifyThatErrorMessageIs(String messageError) {
+        //Retrieving the response body using getBody() method
+        ResponseBody body = response.getBody();
+        //Converting the response body to string object
+        String responseBody=body.asString();
+        Assertions.assertTrue(responseBody.contains(messageError));
+        System.out.println("The diagnostics is: "+responseBody);
+    }
+
+    @Then("I send a POST request and it completes without act of care")
+    public void iSendAPOSTRequestAndItCompletesWithoutActOfCare() {
+        String requestBodyEncounterWithoutCodeTypeService="{\n" +
+                "    \"resourceType\": \"Encounter\",\n" +
+                "    \"identifier\": [\n" +
+                "        {\n" +
+                "            \"value\": \"Prueba9_Yanis\"\n" +
+                "        }\n" +
+                "        \n" +
+                "    ],\n" +
+                "    \"status\": \"unknown\",\n" +
+                "\n" +
+                "   \"class\": {\n" +
+                "    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n" +
+                "    \"code\": \"AMB\",\n" +
+                "    \"display\": \"ambulatory\"\n" +
+                "    },\n" +
+                "    \"type\": [\n" +
+                "        {\n" +
+                "            \"coding\": [\n" +
+                "                {\n" +
+                "                  \n" +
+                "                   \n" +
+                "                    \"display\": \"CONSULTA MEDICA DE URGENCIA\"\n" +
+                "                }\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceType\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/TipoOrdenServicio\",\n" +
+                "                \"code\": \"1\",\n" +
+                "                \"display\": \"PUERTA DE EMERGENCIA\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"priority\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\":\"http://terminology.hl7.org/ValueSet/v3-ActPriority\",\n" +
+                "                \"code\": \"MUU\",\n" +
+                "                \"display\": \"MUY URGENTE\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"subject\": {\n" +
+                "        \"reference\": \"Patient/4012\",\n" +
+                "        \"display\": \"\"\n" +
+                "    },\n" +
+                "    \"participant\": [\n" +
+                "        {\n" +
+                "            \"individual\": {\n" +
+                "                \"reference\": \"PractitionerRole/2267-1-20120101\",\n" +
+                "                \"display\": \"Dra. PEREZ, JOSEFINA - MEDICO GENERAL\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"period\": {\n" +
+                "        \"start\": \"2022-02-03T11:22:36\",\n" +
+                "        \"end\":\"2022-02-03T11:52:36\"\n" +
+                "    },\n" +
+                "    \"hospitalization\": {\n" +
+                "        \"origin\": {\n" +
+                "            \"reference\": \"Organization/2\"\n" +
+                "        }\n" +
+                "    },\n" +
+                "    \"location\": [\n" +
+                "        {\n" +
+                "            \"location\": {\n" +
+                "                \"reference\": \"Location/wa-3-2-3-1\",\n" +
+                "                \"display\": \"Hospital\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceProvider\": {\n" +
+                "        \"reference\": \"Organization/3\"\n" +
+                "    },\n" +
+                "    \"partOf\": {\n" +
+                "        \"reference\": \"Encounter/0\"\n" +
+                "    }\n" +
+                "}";
+        response = request.when().body(requestBodyEncounterWithoutCodeTypeService).post().then().log().all().extract().response();
+    }
+
+    @Then("I send a POST request and it complete with incorrectly formatted Period.Start")
+    public void iSendAPOSTRequestAndItCompleteWithIncorrectlyFormattedPeriodStart() {
+        String requestBodyEncounterWithoutCodeTypeService="{\n" +
+                "    \"resourceType\": \"Encounter\",\n" +
+                "    \"identifier\": [\n" +
+                "        {\n" +
+                "            \"value\": \"Prueba9_Yanis\"\n" +
+                "        }\n" +
+                "        \n" +
+                "    ],\n" +
+                "    \"status\": \"unknown\",\n" +
+                "\n" +
+                "   \"class\": {\n" +
+                "    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n" +
+                "    \"code\": \"AMB\",\n" +
+                "    \"display\": \"ambulatory\"\n" +
+                "    },\n" +
+                "    \"type\": [\n" +
+                "        {\n" +
+                "            \"coding\": [\n" +
+                "                {\n" +
+                "                    \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/ActoAsistencial\",\n" +
+                "                    \"code\": \"11333\",\n" +
+                "                    \"display\": \"CONSULTA MEDICA DE URGENCIA\"\n" +
+                "                }\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceType\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/TipoOrdenServicio\",\n" +
+                "                \"code\": \"1\",\n" +
+                "                \"display\": \"PUERTA DE EMERGENCIA\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"priority\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\":\"http://terminology.hl7.org/ValueSet/v3-ActPriority\",\n" +
+                "                \"code\": \"MUU\",\n" +
+                "                \"display\": \"MUY URGENTE\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"subject\": {\n" +
+                "        \"reference\": \"Patient/4012\",\n" +
+                "        \"display\": \"\"\n" +
+                "    },\n" +
+                "    \"participant\": [\n" +
+                "        {\n" +
+                "            \"individual\": {\n" +
+                "                \"reference\": \"PractitionerRole/2267-1-20120101\",\n" +
+                "                \"display\": \"Dra. PEREZ, JOSEFINA - MEDICO GENERAL\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"period\": {\n" +
+                "        \"start\": \"202-02-03T11:22:36\",\n" +
+                "        \"end\":\"2022-02-03T11:52:36\"\n" +
+                "    },\n" +
+                "    \"hospitalization\": {\n" +
+                "        \"origin\": {\n" +
+                "            \"reference\": \"Organization/2\"\n" +
+                "        }\n" +
+                "    },\n" +
+                "    \"location\": [\n" +
+                "        {\n" +
+                "            \"location\": {\n" +
+                "                \"reference\": \"Location/wa-3-2-3-1\",\n" +
+                "                \"display\": \"Hospital\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceProvider\": {\n" +
+                "        \"reference\": \"Organization/3\"\n" +
+                "    },\n" +
+                "    \"partOf\": {\n" +
+                "        \"reference\": \"Encounter/0\"\n" +
+                "    }\n" +
+                "}";
+        response = request.when().body(requestBodyEncounterWithoutCodeTypeService).post().then().log().all().extract().response();
+    }
+
+    @Then("I send a POST request and it leaves the field in Period. start it empty")
+    public void iSendAPOSTRequestAndItLeavesTheFieldInPeriodStartItEmpty() {
+        String requestBodyEncounterWithoutCodeTypeService="{\n" +
+                "    \"resourceType\": \"Encounter\",\n" +
+                "    \"identifier\": [\n" +
+                "        {\n" +
+                "            \"value\": \"Prueba9_Yanis\"\n" +
+                "        }\n" +
+                "        \n" +
+                "    ],\n" +
+                "    \"status\": \"unknown\",\n" +
+                "\n" +
+                "   \"class\": {\n" +
+                "    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n" +
+                "    \"code\": \"AMB\",\n" +
+                "    \"display\": \"ambulatory\"\n" +
+                "    },\n" +
+                "    \"type\": [\n" +
+                "        {\n" +
+                "            \"coding\": [\n" +
+                "                {\n" +
+                "                    \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/ActoAsistencial\",\n" +
+                "                    \"code\": \"11333\",\n" +
+                "                    \"display\": \"CONSULTA MEDICA DE URGENCIA\"\n" +
+                "                }\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceType\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/TipoOrdenServicio\",\n" +
+                "                \"code\": \"1\",\n" +
+                "                \"display\": \"PUERTA DE EMERGENCIA\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"priority\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\":\"http://terminology.hl7.org/ValueSet/v3-ActPriority\",\n" +
+                "                \"code\": \"MUU\",\n" +
+                "                \"display\": \"MUY URGENTE\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"subject\": {\n" +
+                "        \"reference\": \"Patient/4012\",\n" +
+                "        \"display\": \"\"\n" +
+                "    },\n" +
+                "    \"participant\": [\n" +
+                "        {\n" +
+                "            \"individual\": {\n" +
+                "                \"reference\": \"PractitionerRole/2267-1-20120101\",\n" +
+                "                \"display\": \"Dra. PEREZ, JOSEFINA - MEDICO GENERAL\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"period\": {\n" +
+                "        \"start\": \"\",\n" +
+                "        \"end\":\"2022-02-03T11:52:36\"\n" +
+                "    },\n" +
+                "    \"hospitalization\": {\n" +
+                "        \"origin\": {\n" +
+                "            \"reference\": \"Organization/2\"\n" +
+                "        }\n" +
+                "    },\n" +
+                "    \"location\": [\n" +
+                "        {\n" +
+                "            \"location\": {\n" +
+                "                \"reference\": \"Location/wa-3-2-3-1\",\n" +
+                "                \"display\": \"Hospital\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceProvider\": {\n" +
+                "        \"reference\": \"Organization/3\"\n" +
+                "    },\n" +
+                "    \"partOf\": {\n" +
+                "        \"reference\": \"Encounter/0\"\n" +
+                "    }\n" +
+                "}";
+        response = request.when().body(requestBodyEncounterWithoutCodeTypeService).post().then().log().all().extract().response();
+
+    }
+
+    @Then("I send a POST request without consultation reason")
+    public void iSendAPOSTRequestWithoutConsultationReason() {
+        String requestBodyEncounterWithoutCodeTypeService="{\n" +
+                "    \"resourceType\": \"Encounter\",\n" +
+                "    \"identifier\": [\n" +
+                "        {\n" +
+                "            \"value\": \"Prueb45_Yanis\"\n" +
+                "        }\n" +
+                "        \n" +
+                "    ],\n" +
+                "    \"status\": \"unknown\",\n" +
+                "\n" +
+                "   \"class\": {\n" +
+                "    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n" +
+                "    \"code\": \"AMB\",\n" +
+                "    \"display\": \"ambulatory\"\n" +
+                "    },\n" +
+                "    \"type\": [\n" +
+                "        {\n" +
+                "            \"coding\": [\n" +
+                "                {\n" +
+                "                    \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/ActoAsistencial\",\n" +
+                "                    \"code\": \"11333\",\n" +
+                "                    \"display\": \"CONSULTA MEDICA DE URGENCIA\"\n" +
+                "                }\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceType\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/TipoOrdenServicio\",\n" +
+                "                \"code\": \"1\",\n" +
+                "                \"display\": \"PUERTA DE EMERGENCIA\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"priority\": {\n" +
+                "        \"coding\": [\n" +
+                "            {\n" +
+                "                \"system\":\"http://terminology.hl7.org/ValueSet/v3-ActPriority\",\n" +
+                "                \"code\": \"MUU\",\n" +
+                "                \"display\": \"MUY URGENTE\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"subject\": {\n" +
+                "        \"reference\": \"Patient/2084\",\n" +
+                "        \"display\": \"\"\n" +
+                "    },\n" +
+                "    \"participant\": [\n" +
+                "        {\n" +
+                "            \"individual\": {\n" +
+                "                \"reference\": \"PractitionerRole/2267-1-20120101\",\n" +
+                "                \"display\": \"Dra. PEREZ, JOSEFINA - MEDICO GENERAL\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"period\": {\n" +
+                "        \"start\": \"2022-11-14T11:22:36\",\n" +
+                "        \"end\":\"2023-02-03T11:52:36\"\n" +
+                "    },\n" +
+                "    \"hospitalization\": {\n" +
+                "        \"origin\": {\n" +
+                "            \"reference\": \"Organization/2\"\n" +
+                "        }\n" +
+                "    },\n" +
+                "    \"location\": [\n" +
+                "        {\n" +
+                "            \"location\": {\n" +
+                "                \"reference\": \"Location/wa-3-2-3-1\",\n" +
+                "                \"display\": \"Hospital\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"serviceProvider\": {\n" +
+                "        \"reference\": \"Organization/3\"\n" +
+                "    },\n" +
+                "    \"partOf\": {\n" +
+                "        \"reference\": \"Encounter/0\"\n" +
+                "    }\n" +
+                "}";
+        response = request.when().body(requestBodyEncounterWithoutCodeTypeService).post().then().log().all().extract().response();
+
+    }
+
+    @Then("I send a GET Encounter request with Encounter created")
+    public void iSendAGETEncounterRequestWithEncounterCreated() {
+        request = given()
+                .log().all() //loguear la respuesta
+                .baseUri("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir")
+                .contentType(ContentType.JSON);
+       response = request.get("/Encounter/1-614355");
+        //Retrieving the response body using getBody() method
+        String ContentLocation = response.getContentType();
+        System.out.println("The diagnostics is: "+ContentLocation);
+        request.get(ContentLocation);
     }
 }
