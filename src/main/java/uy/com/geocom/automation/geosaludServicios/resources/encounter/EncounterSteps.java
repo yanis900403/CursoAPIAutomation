@@ -23,6 +23,8 @@ public class EncounterSteps {
     private Response response;
 
      private ValidatableResponse json;
+    private String bodyGET;
+    private String idEncounter;
 
      @Autowired
     private EncounterFacade encounterFacade;
@@ -1267,7 +1269,7 @@ public void iSendEndPointToCreateNewEncounter(){
 
     @Then("I send a POST request without consultation reason")
     public void iSendAPOSTRequestWithoutConsultationReason() {
-        String requestBodyEncounterWithoutCodeTypeService="{\n" +
+     String requestBodyEncounterWithoutCodeTypeService="{\n" +
                 "    \"resourceType\": \"Encounter\",\n" +
                 "    \"identifier\": [\n" +
                 "        {\n" +
@@ -1349,18 +1351,80 @@ public void iSendEndPointToCreateNewEncounter(){
                 "}";
         response = request.when().body(requestBodyEncounterWithoutCodeTypeService).post().then().log().all().extract().response();
 
+    //    JsonPath jsonPath=given().accept(ContentType.JSON).body("").post().then().extract().jsonPath();
     }
 
     @Then("I send a GET Encounter request with Encounter created")
     public void iSendAGETEncounterRequestWithEncounterCreated() {
-        request = given()
-                .log().all() //loguear la respuesta
-                .baseUri("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir")
-                .contentType(ContentType.JSON);
-       response = request.get("/Encounter/1-614355");
-        //Retrieving the response body using getBody() method
-        String ContentLocation = response.getContentType();
-        System.out.println("The diagnostics is: "+ContentLocation);
-        request.get(ContentLocation);
+      String idEncounter= response.getHeaders().asList().get(3).getValue();
+      String bodyGET= given().log().all().get(idEncounter).getBody().asString().toString();
+     }
+
+    @Then("I send a PUT request with modifications in the Json")
+    public void iSendAPUTRequestWithModificationsInTheJson() {
+    response=  given().log().all().accept(ContentType.JSON).contentType(ContentType.JSON).body("{\n" +
+            "    \"resourceType\": \"Encounter\",\n" +
+            "    \"id\": \"1-614396\",\n" +
+            "    \"meta\": {\n" +
+            "        \"lastUpdated\": \"2022-11-21T17:31:46\"\n" +
+            "    },\n" +
+            "    \"identifier\": [\n" +
+            "            \" {\n" +
+            "                \"value\": \"Prueb45_Yanis\",\n" +
+            "                }\n" +
+            "    ],\n" +
+            "    \"status\": \"finished\",\n" +
+            "    \"type\": [\n" +
+            "        {\n" +
+            "            \"coding\": [\n" +
+            "                {\n" +
+            "                    \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/ActoAsistencial\",\n" +
+            "                    \"code\": \"11333\",\n" +
+            "                    \"display\": \"CONSULTA MEDICA DE URGENCIA\"\n" +
+            "                }\n" +
+            "            ]\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"serviceType\": {\n" +
+            "        \"coding\": [\n" +
+            "            {\n" +
+            "                \"system\": \"http://fhir.geocom.com.uy/r4/CodeSystem/TipoOrdenServicio\",\n" +
+            "                \"code\": \"1\",\n" +
+            "                \"display\": \"PUERTA DE EMERGENCIA\"\n" +
+            "            }\n" +
+            "        ]\n" +
+            "    },\n" +
+            "    \"subject\": {\n" +
+            "        \"reference\": \"Patient/4401\",\n" +
+            "        \"display\": \"GRILLO, PEPE\"\n" +
+            "    },\n" +
+            "    \"participant\": [\n" +
+            "        {\n" +
+            "            \"individual\": {\n" +
+            "                \"reference\": \"PractitionerRole/785469-52-20190514\",\n" +
+            "                \"display\": \"ALCAYDE PUPO, REINIER - ADMINISTRATIVO\"\n" +
+            "            }\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"period\": {\n" +
+            "        \"start\": \"2022-11-02T15:55:31\",\n" +
+            "        \"end\": \"2025-11-02T17:24:01\"\n" +
+            "    },\n" +
+            "    \"location\": [\n" +
+            "        {\n" +
+            "            \"location\": {\n" +
+            "                \"reference\": \"Location/wa-3-2-1-3\",\n" +
+            "                \"display\": \"GEOCOM-HOSPITAL-SERVICIO DE EMERGENCIA-PUERTA DE EMERGENCIA\"\n" +
+            "            }\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"serviceProvider\": {\n" +
+            "        \"reference\": \"Organization/3\",\n" +
+            "        \"display\": \"GEOCOM\"\n" +
+            "    },\n" +
+            "    \"partOf\": {\n" +
+            "        \"reference\": \"Encounter/0\"\n" +
+            "    }\n" +
+            "}").put("https://geosaludtestha.geocom.com.uy/hapigeosalud/fhir/Encounter/1-614396").then().log().all().statusCode(200).extract().response();
     }
 }

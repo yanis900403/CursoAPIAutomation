@@ -95,6 +95,5 @@ Feature: Resources Encounter
     Then I send to the endpoint to create a new Encounter
     And  I send a POST request without consultation reason
     Then I send a GET Encounter request with Encounter created
-    Then I send to the endpoint to Update the encounter
     Then I send a PUT request with modifications in the Json
-    Then I can validate I receive a valid status code 200
+ #   Then I can validate I receive a valid status code 200

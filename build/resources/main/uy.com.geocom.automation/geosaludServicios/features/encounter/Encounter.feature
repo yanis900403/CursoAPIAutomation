@@ -89,3 +89,11 @@ Feature: Resources Encounter
     Then I send to the endpoint to create a new Encounter
     Then I send a POST request without consultation reason
     Then I can validate I receive a valid status code 201
+
+  Scenario: ENCOUNTER PUT
+    Given I send to the endpoint Fhir
+    Then I send to the endpoint to create a new Encounter
+    And  I send a POST request without consultation reason
+    Then I send a GET Encounter request with Encounter created
+    Then I send a PUT request with modifications in the Json
+ #   Then I can validate I receive a valid status code 200
